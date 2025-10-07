@@ -1,8 +1,20 @@
 print ("w")
-id = "Alibaba"
-pin = " " "123"
+id = "Tralalelo"
+pin = " " "Tralala"
 total = id + pin
-a = input()
-if a == total:
+
+print (pin + " est correcte?")
+b = input ("Oui ou Non tapez o ou n")
+if b == "o":
     print ("bugaga")
-print (pin + "est correcte?")
+    a = input()
+    if:
+     a == total 
+     print ("halal porc")
+    
+elif b == "O":
+    print ("bugaga")
+else: 
+    print ("Kiknis is jizni eblan")
+
+
