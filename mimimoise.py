@@ -1,44 +1,54 @@
 print("Bienvenue sur AKBank")
 
-# Demande des identifiants
-var_id = input("Entrez votre identifiant : ")
-var_pin = input("Entrez votre mot de passe : ")
-
 # Identifiants enregistrés
-id = "Ana"
-pin = "123"
-solde = 1000  # Solde initial
+identifiant_enregistre = "Ana"
+mot_de_passe_enregistre = "123"
+solde_compte = 1000.0  # Solde initial
 
-# Vérification
-if var_id == id and var_pin == pin:
-    print(f"\nBonjour M. ou Mme {id}.")
-    print("Tapez 1 pour consulter votre solde.")
-    print("Tapez 2 pour retirer de l'argent.")
-    print("Tapez 3 pour déposer de l'argent.")
-    
-    con = input("Votre choix : ")
+# Fonction principale
+def menu_operations():
+    global solde_compte 
 
-    if con == "1":
-        print(f"Votre solde est de {solde} €.")
+    while True:
+        print("\nQue souhaitez-vous faire ?")
+        print("1 - Consulter votre solde")
+        print("2 - Retirer de l'argent")
+        print("3 - Déposer de l'argent")
+        print("4 - Quitter")
 
-    elif con == "2":
-        retr = float(input("Tapez le montant que vous voulez retirer : "))
-        if retr <= solde:
-            solde -= retr
-            print(f"Retrait effectué. Nouveau solde : {solde} €.")
+        choix_utilisateur = input("Votre choix : ")
+
+        if choix_utilisateur == "1":
+            print(f"Votre solde est de {solde_compte:.2f} €.")
+
+        elif choix_utilisateur == "2":
+            montant_retrait = float(input("Montant à retirer : "))
+            if montant_retrait <= solde_compte:
+                solde_compte -= montant_retrait
+                print(f"Retrait effectué. Nouveau solde : {solde_compte:.2f} €.")
+            else:
+                print("Fonds insuffisants pour effectuer ce retrait.")
+
+        elif choix_utilisateur == "3":
+            montant_depot = float(input("Montant à déposer : "))
+            solde_compte += montant_depot
+            print(f"Dépôt effectué. Nouveau solde : {solde_compte:.2f} €.")
+
+        elif choix_utilisateur == "4":
+            print("Merci d'avoir utilisé AKBank. À bientôt !")
+            break
+
         else:
-            print("Fonds insuffisants pour effectuer ce retrait.")
+            print("Option invalide. Veuillez réessayer.")
 
-    elif con == "3":
-        dep = float(input("Tapez le montant que vous voulez déposer : "))
-        solde += dep
-        print(f"Dépôt effectué. Nouveau solde : {solde} €.")
+# Authentification
+while True:
+    identifiant_utilisateur = input("\nEntrez votre identifiant : ")
+    mot_de_passe_utilisateur = input("Entrez votre mot de passe : ")
 
+    if identifiant_utilisateur == identifiant_enregistre and mot_de_passe_utilisateur == mot_de_passe_enregistre:
+        print(f"\nBonjour M. ou Mme {identifiant_enregistre}.")
+        menu_operations()
+        break
     else:
-        print("Option invalide. Veuillez recommencer.")
-
-else:
-    print("Votre identifiant ou mot de passe est invalide. Réessayez.")
-karochi dobav mne v kod chto bi vse peremenie nazivalis ponyatno a tak je vosvrachai k nhachalu esli parol i id ne pravelnie bes neobhodimosti 
-perewaspuskat kod pri kajdoi is treh funktsii predlaval chto vi eche hotite sdelat naprimer cnat dengi i poloji bew neobhodimosti 
-
+        print("Identifiant ou mot de passe incorrect. Veuillez réessayer.")
