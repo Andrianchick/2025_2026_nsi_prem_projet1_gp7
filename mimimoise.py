@@ -1,23 +1,4 @@
-client : {
-{ 123 : 
- { "nom" : "Tralalero",
-  "prénom" : "Ana",
-  "solde" : 546.465,
-  "dépots" : [ {"montant" : 587, "date" : "15-05-2025"}, {"montant" : 5468, "date" : "21-07-2025"} ],
-  "retraits" : [ {"montant" : 845, "date" : "19-01-2025"}, {"montant" : 940, "date" : "29-07-2025"} ], },
-  321 :
-  { "nom" : "Tralala",
-   "prénom" : "Carole",
-   "solde" : 78.465,
-   "dépots" : [ {"montant" : 546, "date" : "15-05-2025"}, {"montant" : 456, "date" : "21-07-2025"} ],
-   "retraits" : [ {"montant" : 458, "date" : "19-01-2025"}, {"montant" : 789, "date" : "29-07-2025"} ], },
-}
-}
-
-
-
-
- client :
+client :
    { 
       { 
          { 123 :  
@@ -30,40 +11,55 @@ client : {
                   {"montant" : 5468, "date" : "21-07-2025"}  
                ],
             "retraits" :
+client : 
+   {  
+      {  
+         { 123 :   
+            "nom" : "Tralalero", 
+            "prénom" : "Tralala", 
+            "solde" : 546.465, 
+            "dépots" : 
                [ 
                   {"montant" : 845, "date" : "19-01-2025"},
                   {"montant" : 940, "date" : "29-07-2025"} 
+                  {"montant" : 587, "date" : "15-05-2025"}, 
+                  {"montant" : 5468, "date" : "21-07-2025"}   
                ], 
-         },
-         { 321 :
-            "nom" : "Bombardiro",
-            "prénom" : "Crocodilo",
-            "solde" : 78.465,
-            "dépots" :
-               [
-                  {"montant" : 546, "date" : "15-05-2025"},
-                  {"montant" : 456, "date" : "21-07-2025"}
-               ],
-            "retraits" :
-               [
-                  {"montant" : 458, "date" : "19-01-2025"},
-                  {"montant" : 789, "date" : "29-07-2025"}
-               ],
-         },
-         { 231 :
-            "nom" : "Ballerina",
-            "prénom" : "Cappuccina",
-            "solde" : 4,308,
+            "retraits" : 
+               [  
+                  {"montant" : 845, "date" : "19-01-2025"}, 
+                  {"montant" : 940, "date" : "29-07-2025"}  
+               ],  
+         }, 
+         { 321 : 
+            "nom" : "Bombardiro", 
+            "prénom" : "Crocodilo", 
+            "solde" : 78.465, 
             "dépots" : 
                [ 
-                  {"montant" : 286, "date" : "15-05-2025"},
-                  {"montant" : 84, "date" : "21-07-2025"}
-               ],
-            "retraits" :
-               [
-                  {"montant" : 68, "date" : "19-01-2025"},
-                  {"montant" : 57, "date" : "29-07-2025"}
-               ],
-         },
-      }
-   }
+                  {"montant" : 546, "date" : "15-05-2025"}, 
+                  {"montant" : 456, "date" : "21-07-2025"} 
+               ], 
+            "retraits" : 
+               [ 
+                  {"montant" : 458, "date" : "19-01-2025"}, 
+                  {"montant" : 789, "date" : "29-07-2025"} 
+               ], 
+         }, 
+         { 231 : 
+            "nom" : "Ballerina", 
+            "prénom" : "Cappuccina", 
+            "solde" : 4,308, 
+            "dépots" :  
+               [  
+                  {"montant" : 286, "date" : "15-05-2025"}, 
+                  {"montant" : 84, "date" : "21-07-2025"} 
+               ], 
+            "retraits" : 
+               [ 
+                  {"montant" : 68, "date" : "19-01-2025"}, 
+                  {"montant" : 57, "date" : "29-07-2025"} 
+               ], 
+         }, 
+      } 
+   } 
