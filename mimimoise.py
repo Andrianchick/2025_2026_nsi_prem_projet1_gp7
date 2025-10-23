@@ -18,7 +18,7 @@ clients = {
     "321" : { 
         "nom" : "Bombardiro", 
         "prénom" : "Crocodilo", 
-        "solde" : 21465, 
+        "solde" : 2146, 
         "dépots" : [ 
             {"montant" : 546, "date" : "18/05/2024"}, 
             {"montant" : 456, "date" : "06/06/2024"} 
