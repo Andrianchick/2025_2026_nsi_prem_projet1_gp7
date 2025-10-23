@@ -12,14 +12,14 @@ while True:
 
     if identifiant_utilisateur == identifiant_enregistre and mot_de_passe_utilisateur == mot_de_passe_enregistre:
         print(f"\nBonjour M. ou Mme {identifiant_enregistre}.")
-        menu_operations()
+        def menu_operations() :
+            global solde_compte
         break
     else:
         print("\nIdentifiant ou mot de passe incorrect. Veuillez réessayer.")
 
 # Fonction principale
 def menu_operations():
-    global solde_compte
     
     while True :
         print("\nQue souhaitez-vous faire ? :"
@@ -76,3 +76,4 @@ def menu_operations():
         else:
             input("Option invalide.\n"
                   "Appuyez sur une touche pour réessayer.")
+            
