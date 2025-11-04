@@ -1,47 +1,53 @@
-print("Bienvenue sur AKBank")
+import json
+from datetime import datetime
 
-identifiant_enregistre = "Ana"
-mot_de_passe_enregistre = "123"
-solde_compte = 1000.0
+clients = { 
+    "123" : {
+        "nom" : "Tralalero", 
+        "prénom" : "Tralala", 
+        "solde" : 52465, 
+        "dépots" : [ 
+            {"montant" : 845, "date" : "14/01/2024"}, 
+            {"montant" : 940, "date" : "03/02/2024"}
+        ], 
+        "retraits" : [ 
+            {"montant" : 354, "date" : "27/03/2024"}, 
+            {"montant" : 540, "date" : "09/04/2024"} 
+        ] 
+    }, 
+    "321" : { 
+        "nom" : "Bombardiro", 
+        "prénom" : "Crocodilo", 
+        "solde" : 2146, 
+        "dépots" : [ 
+            {"montant" : 546, "date" : "18/05/2024"}, 
+            {"montant" : 456, "date" : "06/06/2024"} 
+        ], 
+        "retraits" : [ 
+            {"montant" : 458, "date" : "22/07/2024"}, 
+            {"montant" : 789, "date" : "11/08/2024"} 
+        ] 
+    }, 
+    "231" : { 
+        "nom" : "Ballerina", 
+        "prénom" : "Cappuccina", 
+        "solde" : 45308, 
+        "dépots" : [ 
+            {"montant" : 286, "date" : "30/09/2024"}, 
+            {"montant" : 84, "date" : "05/10/2024"} 
+        ], 
+        "retraits" : [ 
+            {"montant" : 68, "date" : "16/11/2024"}, 
+            {"montant" : 57, "date" : "28/12/2024"} 
+        ] 
+    } 
+}
 
-while True:
-    identifiant_utilisateur = input("Entrez votre identifiant : ")
-    mot_de_passe_utilisateur = input("Entrez votre mot de passe : ")
+with open("clients.json", "w") as f:
+    json.dump(clients, f, indent=4, ensure_ascii=False)
 
-    if identifiant_utilisateur == identifiant_enregistre and mot_de_passe_utilisateur == mot_de_passe_enregistre:
-        print(f"\nBonjour M. ou Mme {identifiant_enregistre}.")
-        break
-    else:
-        print("Identifiant ou mot de passe incorrect. Veuillez réessayer.\n")
+with open("clients.json", "r") as f:
+    clients = json.load(f)
 
-while True:
-    print("\nQue souhaitez-vous faire ?")
-    print("1 - Consulter votre solde")
-    print("2 - Retirer de l'argent")
-    print("3 - Déposer de l'argent")
-    print("4 - Quitter")
-
-    choix_utilisateur = input("Votre choix : ")
-
-    if choix_utilisateur == "1":
-        print(f"Votre solde est de {solde_compte:.2f} €.")
-
-    elif choix_utilisateur == "2":
-        montant_retrait = float(input("Montant à retirer : "))
-        if montant_retrait <= solde_compte:
-            solde_compte -= montant_retrait
-            print(f"Retrait effectué. Nouveau solde : {solde_compte:.2f} €.")
-        else:
-            print("Fonds insuffisants pour effectuer ce retrait.")
-
-    elif choix_utilisateur == "3":
-        montant_depot = float(input("Montant à déposer : "))
-        solde_compte += montant_depot
-        print(f"Dépôt effectué. Nouveau solde : {solde_compte:.2f} €.")
-
-    elif choix_utilisateur == "4":
-        print("Merci d'avoir utilisé AKBank. À bientôt !")
-        break
-
-    else:
-        print("Option invalide. Veuillez choisir une option entre 1 et 4.")
+print(json.dumps(clients, indent=4, ensure_ascii=False))
+>>>>>>> dca678d818e768fb3ae3be13c7e17353fc5bd4fd
