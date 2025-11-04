@@ -14,15 +14,15 @@ def sauvegarder_clients(clients, fichier="clients.json"):
 # Authentification
 def authentifier(clients):
     while True:
-        identifiant = input("\nEntrez votre identifiant client : ")
-        mot_de_passe = input("Entrez votre mot de passe : ")
+        id = input("\nEntrez votre identifiant client : ")
+        mdp = input("Entrez votre mot de passe : ")
 
-        if identifiant in clients and mot_de_passe == identifiant:
-            client = clients[identifiant]
-            print(f"\nBonjour {client['prenom']} {client['nom']} !")
-            return identifiant
-        else:
-            print("Identifiant ou mot de passe incorrect. Veuillez réessayer.")
+        if id == identifiant and mot_de_passe == mot_de_passe_enregistre:
+        print(f"\nBonjour M. ou Mme {identifiant_enregistre}.")
+        menu_operations()
+        break
+    else:
+        print("Identifiant ou mot de passe incorrect. Veuillez réessayer.")
 
 # Consultation du solde
 def consulter_solde(client):
