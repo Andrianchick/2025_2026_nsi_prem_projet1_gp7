@@ -1,6 +1,11 @@
 import json
 from datetime import datetime
-
+client = ""
+import mimimoise
+identifiant = ""
+def importation():
+    for identifant in mimimoise:
+        identifiant = identifant in mimimoise
 # Chargement des données clients
 def charger_clients(fichier="clients.json"):
     with open(fichier, "r", encoding="utf-8") as f:
@@ -16,13 +21,12 @@ def authentifier(clients):
     while True:
         id = input("\nEntrez votre identifiant client : ")
         mdp = input("Entrez votre mot de passe : ")
-
+        
         if id == identifiant and mdp == mot_de_passe:
-        print(f"\nBonjour M. ou Mme {identifiant_enregistre}.")
-        menu_operations()
-        break
-    else:
-        print("Identifiant ou mot de passe incorrect. Veuillez réessayer.")
+            print(f"\nBonjour M. ou Mme {identifiant}.")
+            menu_operations()
+        else:
+            print("Identifiant ou mot de passe incorrect. Veuillez réessayer.")
 
 # Consultation du solde
 def consulter_solde(client):
