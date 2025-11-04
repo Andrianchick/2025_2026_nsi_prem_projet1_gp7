@@ -1,79 +1,102 @@
-print("Bienvenue sur AKBank")
+import json
+from datetime import datetime
 
-# Identifiants enregistrés
-identifiant_enregistre = "Ana"
-mot_de_passe_enregistre = "123"
-solde_compte = 1000.0  # Solde initial
+# Chargement des données clients
+def charger_clients(fichier="clients.json"):
+    with open(fichier, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+# Sauvegarde des données clients
+def sauvegarder_clients(clients, fichier="clients.json"):
+    with open(fichier, "w", encoding="utf-8") as f:
+        json.dump(clients, f, indent=4, ensure_ascii=False)
 
 # Authentification
-while True:
-    identifiant_utilisateur = input("\nEntrez votre identifiant : ")
-    mot_de_passe_utilisateur = input("Entrez votre mot de passe : ")
+def authentifier(clients):
+    while True:
+        identifiant = input("\nEntrez votre identifiant client : ")
+        mot_de_passe = input("Entrez votre mot de passe : ")
 
-    if identifiant_utilisateur == identifiant_enregistre and mot_de_passe_utilisateur == mot_de_passe_enregistre:
-        print(f"\nBonjour M. ou Mme {identifiant_enregistre}.")
-        def menu_operations() :
-            global solde_compte
-        break
+        if identifiant in clients and mot_de_passe == identifiant:
+            client = clients[identifiant]
+            print(f"\nBonjour {client['prenom']} {client['nom']} !")
+            return identifiant
+        else:
+            print("Identifiant ou mot de passe incorrect. Veuillez réessayer.")
+
+# Consultation du solde
+def consulter_solde(client):
+    print(f"\nVotre solde est de {client['solde']:.2f} €.")
+
+# Retrait d'argent
+def retirer_argent(client):
+    montant = float(input("Montant à retirer : "))
+    if montant <= client["solde"]:
+        client["solde"] -= montant
+        client["retraits"].append({
+            "montant": montant,
+            "date": datetime.now().strftime("%d/%m/%Y")
+        })
+        print(f"Retrait effectué. Nouveau solde : {client['solde']:.2f} €.")
     else:
-        print("\nIdentifiant ou mot de passe incorrect. Veuillez réessayer.")
+        print("Fonds insuffisants.")
 
-# Fonction principale
-def menu_operations():
-    
-    while True :
-        print("\nQue souhaitez-vous faire ? :"
-              "\n1 - Consulter votre solde"
-              "\n2 - Retirer de l'argent"
-              "\n3 - Déposer de l'argent"
-              "\n4 - Quitter")
-        
-        choix_utilisateur = input("\nQue souhaitez-vous faire ? :"
-                                  "\n1 - Consulter votre solde"
-                                  "\n2 - Retirer de l'argent"
-                                  "\n3 - Déposer de l'argent"
-                                  "\n4 - Quitter"
-                                  "\n\nVotre choix : ")
-        
-        if choix_utilisateur == "1":
-            
-            print(f"\nVotre solde est de {solde_compte:.2f} €.\n")
-            
-            input(f"\nVotre solde est de {solde_compte:.2f} €.\n\n"
-                  "Appuyez sur sur une touche pour revenir au menu principal.")
+# Dépôt d'argent
+def deposer_argent(client):
+    montant = float(input("Montant à déposer : "))
+    client["solde"] += montant
+    client["depots"].append({
+        "montant": montant,
+        "date": datetime.now().strftime("%d/%m/%Y")
+    })
+    print(f"Dépôt effectué. Nouveau solde : {client['solde']:.2f} €.")
 
-        elif choix_utilisateur == "2":
-            montant_retrait = float(input("Saisissez le montant à retirer : "))
-            
-            if montant_retrait <= solde_compte:
-                solde_compte -= montant_retrait
-                
-                print("\nRetrait effectué.\n"
-                  f"Votre solde est de {solde_compte:.2f} €.")
-                
-                input("\nRetrait effectué.\n"
-                  f"Votre solde est de {solde_compte:.2f} €.\n\n"
-                  "Appuyez sur une touche pour revenir au menu principal.")
-                
-            else:
-                print("\nFonds insuffisants pour effectuer ce retrait.")
+# Affichage de l'historique
+def afficher_historique(client):
+    print("\n--- Historique des dépôts ---")
+    for d in client["depots"]:
+        print(f"+ {d['montant']} € le {d['date']}")
+    print("\n--- Historique des retraits ---")
+    for r in client["retraits"]:
+        print(f"- {r['montant']} € le {r['date']}")
 
-        elif choix_utilisateur == "3":
-            montant_depot = float(input("Saisissez le montant à déposer : "))
-            solde_compte += montant_depot
-            
-            print("\nDépôt effectué.\n"
-                  f"Votre solde est de {solde_compte:.2f} €.")
-            
-            input("\nDépôt effectué.\n"
-                  f"Votre solde est de {solde_compte:.2f} €.\n\n"
-                  "Appuyez sur touche pour revenir au menu principal.")
+# Menu principal
+def menu_operations(identifiant, clients):
+    client = clients[identifiant]
 
-        elif choix_utilisateur == "4":
+    while True:
+        print("\nQue souhaitez-vous faire ?")
+        print("1 - Consulter votre solde")
+        print("2 - Retirer de l'argent")
+        print("3 - Déposer de l'argent")
+        print("4 - Voir l'historique")
+        print("5 - Quitter")
+
+        choix = input("Votre choix : ")
+
+        if choix == "1":
+            consulter_solde(client)
+        elif choix == "2":
+            retirer_argent(client)
+        elif choix == "3":
+            deposer_argent(client)
+        elif choix == "4":
+            afficher_historique(client)
+        elif choix == "5":
             print("Merci d'avoir utilisé AKBank. À bientôt !")
             break
-
         else:
-            input("Option invalide.\n"
-                  "Appuyez sur une touche pour réessayer.")
-            
+            print("Option invalide. Veuillez réessayer.")
+
+    sauvegarder_clients(clients)
+
+# Programme principal
+def main():
+    print("Bienvenue sur AKBank")
+    clients = charger_clients()
+    identifiant = authentifier(clients)
+    menu_operations(identifiant, clients)
+
+# Lancement du programme
+if __name__ == "__main__":
+    main()
