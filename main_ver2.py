@@ -17,7 +17,7 @@ def authentifier(clients):
         id = input("\nEntrez votre identifiant client : ")
         mdp = input("Entrez votre mot de passe : ")
 
-        if id == identifiant and mot_de_passe == mot_de_passe_enregistre:
+        if id == identifiant and mdp == mot_de_passe:
         print(f"\nBonjour M. ou Mme {identifiant_enregistre}.")
         menu_operations()
         break
