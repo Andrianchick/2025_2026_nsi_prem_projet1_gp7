@@ -1,9 +1,9 @@
 {
     "123": {
         "nom": "Tralalero",
-        "prénom": "Tralala",
+        "prenom": "Tralala",
         "solde": 52465,
-        "dépots": [
+        "depots": [
             {
                 "montant": 845,
                 "date": "14/01/2024"
@@ -26,9 +26,9 @@
     },
     "321": {
         "nom": "Bombardiro",
-        "prénom": "Crocodilo",
+        "prenom": "Crocodilo",
         "solde": 2146,
-        "dépots": [
+        "depots": [
             {
                 "montant": 546,
                 "date": "18/05/2024"
@@ -51,9 +51,9 @@
     },
     "231": {
         "nom": "Ballerina",
-        "prénom": "Cappuccina",
+        "prenom": "Cappuccina",
         "solde": 45308,
-        "dépots": [
+        "depots": [
             {
                 "montant": 286,
                 "date": "30/09/2024"
