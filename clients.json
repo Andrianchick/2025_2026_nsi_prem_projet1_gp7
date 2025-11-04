@@ -1,7 +1,7 @@
 {
     "123": {
-        "nom": "Tralalero",
-        "prenom": "Tralala",
+        "identifiant": "Tralalero",
+        "mot_de_passe": 1111,
         "solde": 52465,
         "depots": [
             {
@@ -25,8 +25,8 @@
         ]
     },
     "321": {
-        "nom": "Bombardiro",
-        "prenom": "Crocodilo",
+        "identifiant": "Bombardiro",
+        "mot_de_passe": 2222,
         "solde": 2146,
         "depots": [
             {
@@ -50,8 +50,8 @@
         ]
     },
     "231": {
-        "nom": "Ballerina",
-        "prenom": "Cappuccina",
+        "identifiant": "Ballerina",
+        "mot_de_passe": 3333,
         "solde": 45308,
         "depots": [
             {
