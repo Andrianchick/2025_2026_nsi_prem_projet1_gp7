@@ -3,9 +3,14 @@ from datetime import datetime
 client = ""
 import mimimoise
 identifiant = ""
-def importation():
+mot_de_passe = ""
+def importation_1():
     for identifant in mimimoise:
-        identifiant = identifant in mimimoise
+        identifant = identifant in mimimoise
+def importation_2():
+    for mot_de_passe in mimimoise:
+        mot_de_passe = mot_de_passe in mimimoise
+        
 # Chargement des données clients
 def charger_clients(fichier="clients.json"):
     with open(fichier, "r", encoding="utf-8") as f:
