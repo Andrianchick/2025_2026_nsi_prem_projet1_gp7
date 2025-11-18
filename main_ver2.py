@@ -34,7 +34,7 @@ def consulter_solde(client):
 
 # Retrait d'argent
 def retirer_argent(client):
-    montant = float(input("Montant à retirer : "))
+    montant = montant_à_retirer()
     if montant <= client["solde"]:
         client["solde"] -= montant
         client["retraits"].append({
@@ -42,8 +42,15 @@ def retirer_argent(client):
             "date": datetime.now().strftime("%d/%m/%Y")
         })
         print(f"Retrait effectué. Nouveau solde : {client['solde']:.2f} €.")
+    elif montant > client["solde"]:
+        print("Fonds insuffisants. Vous êtes trop pauvre.")
+
+def montant_à_retirer():
+    montant = input("Rentrez le montant que vous retirer :")
+    if montant == float(montant):
+        return "Vous ne pouvez pas retirer un montant à valeur décimale. Réessayez." and montant_à_retirer()
     else:
-        print("Fonds insuffisants.")
+        return montant
 
 # Dépôt d'argent
 def deposer_argent(client):
