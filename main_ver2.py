@@ -1,16 +1,6 @@
 import json
 from datetime import datetime
-client = ""
-import mimimoise
-identifiant = ""
-mot_de_passe = ""
-def importation_1():
-    for identifant in mimimoise:
-        identifant = identifant in mimimoise
-def importation_2():
-    for mot_de_passe in mimimoise:
-        mot_de_passe = mot_de_passe in mimimoise
-        
+
 # Chargement des données clients
 def charger_clients(fichier="clients.json"):
     with open(fichier, "r", encoding="utf-8") as f:
@@ -24,14 +14,19 @@ def sauvegarder_clients(clients, fichier="clients.json"):
 # Authentification
 def authentifier(clients):
     while True:
-        id = input("\nEntrez votre identifiant client : ")
-        mdp = input("Entrez votre mot de passe : ")
-        
-        if id == identifiant and mdp == mot_de_passe:
-            print(f"\nBonjour M. ou Mme {identifiant}.")
-            menu_operations()
-        else:
-            print("Identifiant ou mot de passe incorrect. Veuillez réessayer.")
+        id_saisi = input("\nEntrez votre identifiant client : ").strip()
+        mdp_saisi = input("Entrez votre mot de passe : ").strip()
+
+        # Vérification dans le dictionnaire
+        for numero, client in clients.items():
+            ident = str(client.get("identifiant", "")).strip()
+            mdp_client = str(client.get("mot_de_passe", "")).strip()
+
+            if id_saisi == ident and mdp_saisi == mdp_client:
+                print(f"\nBonjour M. ou Mme {ident}.")
+                return numero  # retourne la clé du client
+
+        print("Identifiant ou mot de passe incorrect. Veuillez réessayer.")
 
 # Consultation du solde
 def consulter_solde(client):
@@ -103,6 +98,7 @@ def menu_operations(identifiant, clients):
 def main():
     print("Bienvenue sur AKBank")
     clients = charger_clients()
+    print("Comptes disponibles :", [c["identifiant"] for c in clients.values()])  # Debug
     identifiant = authentifier(clients)
     menu_operations(identifiant, clients)
 
