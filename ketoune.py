@@ -53,50 +53,51 @@ def retirer_argent(client):
 
     if not montant.isdigit() or int(montant) <= 0:
         print("Montant invalide.")
-        time.sleep(5)
-        return
+        time.sleep(2)
+        return retirer_argent(client)
 
     montant = int(montant)
 
     # Vérification du solde
     if montant > client["solde"]:
         print("Fonds insuffisants.")
-        time.sleep(5)
-        return
+        time.sleep(2)
+        return retirer_argent(client)
 
     # Étape 2 : proposer la répartition en billets
     while True:  # boucle pour recommencer si erreur
         print("\nRépartissez votre retrait en billets disponibles :")
         coupures = [5, 10, 20, 50, 100]
+        coupure = input("Quelle coupure voulez-vous utiliser (5, 10, 20, 50, 100) ? ").strip()
+            
+        if not coupure.isdigit() or int(coupure) not in coupures:
+            print("Coupure invalide.")
+            time.sleep(2)
+            continue
 
-        for n in coupures:  # commencer par les grosses coupures
-            nb = input("Quelle coupure de 5, 10, 20, 50, 100 voulez-vous ?: ").strip()
-            if nb.isdigit():
-                nb = int(nb)
-                # Vérification immédiate : pas plus que le reste
-                if nb > 100 or nb < 5:
-                    print("Cette coupure n'est pas disponible")
-                    print("Recommencez la répartition.\n")
-                    break  # sortir de la boucle for → recommencer
-                reste = montant/nb
-                rest = nb*reste
-                return
-        else:
-            # Si la boucle for s'est terminée sans 'break'
-            if reste == 0:
-                # Mise à jour du solde et historique
-                client["solde"] -= montant
-                client["retraits"].append({
-                    "montant": montant,
-                    "date": datetime.now().strftime("%d/%m/%Y"),
-                })
+        coupure = int(coupure)
 
-                print(f"\nRetrait de {montant} € effectué.")
-                print("Répartition des billets :")
-                print(f"  - {nb} x {reste} €")
-                print(f"Nouveau solde : {client['solde']:.2f} €.")
-                time.sleep(5)
-                return
+        # Vérification que le montant est divisible par la coupure
+        if montant % coupure != 0:
+            print(f"Impossible de retirer {montant} € uniquement en billets de {coupure} €.")
+            time.sleep(2)
+            continue 
+
+        nb_billets = montant // coupure
+
+        # Mise à jour du solde et historique
+        client["solde"] -= montant
+        client["retraits"].append({
+            "montant": montant,
+            "date": datetime.now().strftime("%d/%m/%Y")
+        })
+
+        print(f"\nRetrait de {montant} € effectué.")
+        print("Voilà :")
+        print(f"  - {nb_billets} billets de {coupure} €")
+        print(f"Nouveau solde : {client['solde']:.2f} €.")
+        time.sleep(5)
+        break
 
 # ==========================
 # Dépôt d'argent
